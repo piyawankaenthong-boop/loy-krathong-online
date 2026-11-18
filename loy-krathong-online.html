@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arup Bangkok Loy Krathong Online 2026 | ลอยกระทงออนไลน์ 2569</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#ffd27a;--ink:#0b1030;--card:rgba(255,255,255,.08);--line:rgba(255,255,255,.18)}
+body{font-family:"Segoe UI","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;color:#fff;min-height:100vh;
+background:linear-gradient(#050818 0%,#0d1745 45%,#16336b 100%);background-attachment:fixed;overflow-x:hidden}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.stars i{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:tw 3s infinite ease-in-out}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:1}}
+.moon{position:fixed;top:24px;right:6vw;width:80px;height:80px;border-radius:50%;z-index:0;
+background:radial-gradient(circle at 35% 35%,#fffbe6,#ffe9a8 60%,#f3cf6e);box-shadow:0 0 60px 20px rgba(255,226,140,.35)}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#fw{position:absolute;inset:0;width:100%;height:100%}
+.lan{position:absolute;bottom:-90px;width:34px;height:44px;opacity:0;animation:rise linear infinite}
+.lan .sw{width:100%;height:100%;animation:sway ease-in-out infinite}
+.lan .bd{width:100%;height:100%;border-radius:45% 45% 38% 38%/55% 55% 45% 45%;
+background:radial-gradient(ellipse at 50% 70%,#fff3b0 0%,#ffb347 45%,#e8731a 100%);
+box-shadow:0 0 22px 8px rgba(255,170,60,.55),0 0 60px 18px rgba(255,140,40,.25);position:relative}
+.lan .bd:after{content:"";position:absolute;left:50%;bottom:-5px;width:12px;height:6px;margin-left:-6px;border-radius:0 0 6px 6px;background:#9a4a10}
+@keyframes rise{0%{transform:translateY(0);opacity:0}8%{opacity:.95}85%{opacity:.8}100%{transform:translateY(-118vh);opacity:0}}
+@keyframes sway{0%,100%{transform:translateX(-14px) rotate(-4deg)}50%{transform:translateX(14px) rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){.lan{animation:none;opacity:.7}.lan .sw{animation:none}}
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:20px 16px 40px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+h1{font-size:clamp(1.5rem,5vw,2.4rem);color:var(--gold);text-shadow:0 0 18px rgba(255,210,122,.5)}
+.sub{opacity:.85;margin-bottom:16px;max-width:620px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;color:#fff;padding:7px 16px;cursor:pointer;font-size:.95rem}
+.lang button.on{background:var(--gold);color:var(--ink);font-weight:700}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;backdrop-filter:blur(6px);margin-bottom:18px}
+h2{font-size:1.05rem;margin-bottom:10px;color:var(--gold)}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px}
+.kopt{border:2px solid transparent;background:rgba(255,255,255,.06);border-radius:14px;padding:8px;cursor:pointer;text-align:center;color:#fff;font-size:.85rem}
+.kopt svg{width:100%;max-width:90px;height:auto;display:block;margin:0 auto 4px}
+.kopt.sel,.kopt:focus-visible{border-color:var(--gold);background:rgba(255,210,122,.15);outline:none}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1;min-width:150px;padding:10px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;font-size:.95rem}
+.seg button.sel{background:var(--gold);color:var(--ink);font-weight:700}
+.hint{font-size:.82rem;opacity:.75;margin-top:6px}
+textarea,input[type=text]{width:100%;margin-top:8px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:#fff;font:inherit}
+textarea{min-height:80px;resize:vertical}
+.cnt{text-align:right;font-size:.78rem;opacity:.7}
+.go{width:100%;margin-top:12px;padding:13px;border:0;border-radius:14px;font-size:1.05rem;font-weight:700;cursor:pointer;
+background:linear-gradient(90deg,#ffb347,#ffd27a);color:var(--ink);transition:transform .15s}
+.go:hover{transform:scale(1.02)}
+.river{position:relative;height:300px;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+background:linear-gradient(#0f2a5c,#071a3d 60%,#04112b)}
+.river .wave{position:absolute;left:-50%;width:200%;height:60px;opacity:.25;animation:wv 9s linear infinite}
+@keyframes wv{to{transform:translateX(25%)}}
+.k{position:absolute;width:74px;cursor:pointer;animation:drift linear infinite;border:0;background:none}
+.k .b{animation:bob 3s ease-in-out infinite}
+.k svg{width:100%;display:block;filter:drop-shadow(0 0 10px rgba(255,190,80,.7))}
+.cap{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);margin-bottom:2px;width:max-content;max-width:190px;
+background:rgba(10,16,48,.78);border:1px solid rgba(255,210,122,.6);border-radius:10px;padding:4px 9px;font-size:.78rem;line-height:1.3;
+color:#fff;text-align:center;pointer-events:none;box-shadow:0 0 12px rgba(255,190,80,.35);word-break:break-word}
+.cap em{display:block;font-style:normal;color:var(--gold);font-size:.68rem}
+.cap span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.k.fresh .cap{animation:pop .6s ease-out}
+@keyframes pop{from{opacity:0;transform:translateX(-50%) translateY(8px) scale(.8)}to{opacity:1}}
+.k:focus-visible{outline:2px solid var(--gold);border-radius:8px}
+@keyframes drift{from{left:-90px}to{left:100%}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(5px) rotate(2deg)}}
+.tip{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);max-width:90%;background:rgba(0,0,0,.7);border:1px solid var(--gold);border-radius:12px;padding:8px 14px;font-size:.9rem;text-align:center;display:none;z-index:5}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{flex:1;min-width:140px;padding:10px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:.92rem}
+.btn:hover{background:rgba(255,255,255,.18)}
+.fact{margin-top:12px;font-size:.92rem;padding:10px 14px;border-left:3px solid var(--gold);background:rgba(255,255,255,.05);border-radius:0 10px 10px 0}
+.stat{font-size:.85rem;opacity:.8;margin-bottom:8px}
+.tog{display:flex;align-items:center;gap:10px;margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.05);cursor:pointer;font-size:.95rem}
+.tog input{width:20px;height:20px;accent-color:#ffd27a;cursor:pointer}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:6px}
+.wc{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.92rem;word-break:break-word}
+.wc b{display:block;margin-top:6px;font-size:.8rem;color:var(--gold);font-weight:600}
+.empty{opacity:.7;font-size:.9rem}
+footer{text-align:center;font-size:.8rem;opacity:.65;margin-top:10px}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);padding:10px 18px;border-radius:999px;font-weight:700;display:none;z-index:20}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div><div class="moon"></div>
+<div class="bg" aria-hidden="true"><canvas id="fw"></canvas><div id="lanterns"></div></div>
+<div class="wrap">
+<header>
+  <h1 id="t_title"></h1>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" id="lTH">ไทย</button><button type="button" id="lEN">EN</button>
+  </div>
+</header>
+<p class="sub" id="t_sub"></p>
+
+<section class="panel">
+  <h2 id="t_s1"></h2>
+  <div class="kgrid" id="kgrid"></div>
+  <h2 style="margin-top:16px" id="t_s2"></h2>
+  <div class="seg">
+    <button type="button" id="mWish" class="sel"></button>
+    <button type="button" id="mLet"></button>
+  </div>
+  <textarea id="wish" maxlength="120"></textarea>
+  <div class="cnt"><span id="c">0</span>/120</div>
+  <label class="tog" id="togBox"><input type="checkbox" id="showWish" checked><span id="t_show"></span></label>
+  <input type="text" id="name" maxlength="30">
+  <p class="hint" id="t_hint"></p>
+  <button type="button" class="go" id="float"></button>
+</section>
+
+<section class="panel">
+  <h2 id="t_river"></h2>
+  <div class="stat" id="stat"></div>
+  <div class="river" id="river" aria-live="polite">
+    <svg class="wave" style="bottom:20px" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 30 Q50 0 100 30 T200 30 T300 30 T400 30 T500 30 T600 30 T700 30 T800 30 T900 30 T1000 30 T1100 30 T1200 30 V60 H0Z" fill="#7fb4ff"/></svg>
+    <svg class="wave" style="bottom:-10px;animation-duration:13s" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 30 Q50 0 100 30 T200 30 T300 30 T400 30 T500 30 T600 30 T700 30 T800 30 T900 30 T1000 30 T1100 30 T1200 30 V60 H0Z" fill="#4f86d9"/></svg>
+    <div class="tip" id="tip"></div>
+  </div>
+  <div class="row">
+    <button type="button" class="btn" id="dl"></button>
+    <button type="button" class="btn" id="clr"></button>
+  </div>
+  <div class="fact" id="fact"></div>
+</section>
+<section class="panel">
+  <h2 id="t_wall"></h2>
+  <div class="wall" id="wall"></div>
+</section>
+<footer id="t_foot"></footer>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+(function(){
+var T={
+th:{title:"🪔 Arup Bangkok ลอยกระทงออนไลน์ 2569",sub:"ปล่อยเรื่องที่ไม่สบายใจ และขอพรดี ๆ ไปกับสายน้ำ ไม่ต้องทำกระทงจริง ไม่ต้องเปียก ไม่ต้องเก็บกวาด",
+s1:"1. เลือกกระทงของคุณ",s2:"2. เลือกสิ่งที่จะทำ",wish:"✨ ขอพร (Make a Wish)",let:"🕊️ ปล่อยวาง (Let It Go)",
+ph_wish:"เขียนคำขอพรของคุณ…",ph_let:"เขียนสิ่งที่อยากปล่อยวาง (จะไม่ถูกบันทึกหรือแสดงให้ใครเห็น)…",
+name:"ชื่อหรือชื่อเล่น (ไม่ใส่ก็ได้)",show:"แสดงคำอธิษฐานของฉันให้คนอื่นเห็น",wall:"💬 กำแพงคำอธิษฐาน",wallEmpty:"ยังไม่มีคำอธิษฐานที่เปิดเผย",privTip:"🔒 คำอธิษฐานส่วนตัว",hint_wish:"ถ้าเปิดแสดง คำอธิษฐานจะปรากฏบนแม่น้ำและกำแพงคำอธิษฐาน ถ้าปิด กระทงจะลอยไปโดยไม่เก็บข้อความ",hint_let:"โหมดปล่อยวางจะไม่เก็บข้อความ กระทงจะลอยไปแบบไม่ระบุชื่อ",
+go:"🌊 ลอยกระทง",river:"แม่น้ำแห่งพร",stat:"กระทงบนแม่น้ำ: ",pubn:"เปิดเผยคำอธิษฐาน: ",live:"🟢 ออนไลน์ ทุกคนเห็นร่วมกัน",loc:"💾 โหมดในเครื่อง (เปิดผ่านเซิร์ฟเวอร์เพื่อแชร์กับทุกคน)",dl:"⬇️ บันทึกการ์ดพร",clr:"🧹 ล้างแม่น้ำ",
+foot:"กิจกรรมภายในบริษัท Arup Bangkok • ข้อความถูกเก็บในเบราว์เซอร์ของคุณเท่านั้น",footS:"กิจกรรมภายในบริษัท Arup Bangkok • เฉพาะคำอธิษฐานที่เลือก “แสดง” เท่านั้นที่ถูกแชร์ให้ทุกคนเห็น ส่วนตัวจะไม่ถูกเก็บ",
+letTip:"🕊️ ความกังวลที่ถูกปล่อยวางแล้ว",empty:"กรุณาเขียนข้อความก่อน",sent:"กระทงของคุณลอยไปแล้ว 🪔",noCard:"ลอยกระทงก่อนเพื่อบันทึกการ์ด",
+cleared:"ล้างแม่น้ำแล้ว",anon:"ไม่ระบุชื่อ",
+names:["ดอกบัว","ดอกดาวเรือง","กล้วยไม้","มะลิ"],
+facts:["รู้ไหม? ลอยกระทงตรงกับคืนเพ็ญเดือน 12 ตามปฏิทินจันทรคติไทย","รู้ไหม? ‘ลอย’ แปลว่า float ส่วน ‘กระทง’ เดิมทำจากใบตอง","รู้ไหม? กระทงที่ทำจากขนมปังหรือวัสดุธรรมชาติ ช่วยลดขยะในแม่น้ำ","รู้ไหม? ประเพณีนี้ขอขมาพระแม่คงคา และปล่อยความโกรธความเศร้าไปกับสายน้ำ","รู้ไหม? เทศกาลนี้ในภาคเหนือเรียกว่า ‘ยี่เป็ง’ และมีโคมลอยด้วย","รู้ไหม? เทียนและธูปบนกระทงเป็นสัญลักษณ์ของแสงสว่างและการบูชา"]},
+en:{title:"🪔 Arup Bangkok Loy Krathong Online 2026",sub:"Let go of what weighs on you and make a wish on the water. No real krathong, no wet shoes, no clean-up.",
+s1:"1. Choose your krathong",s2:"2. Choose what to do",wish:"✨ Make a Wish",let:"🕊️ Let It Go",
+ph_wish:"Write your wish…",ph_let:"Write what you want to let go of (it is never saved or shown)…",
+name:"Name or nickname (optional)",show:"Show my wish to others",wall:"💬 Wish Wall",wallEmpty:"No public wishes yet",privTip:"🔒 A private wish",hint_wish:"If on, your wish appears on the river and the Wish Wall. If off, the krathong floats away and your text is not saved.",hint_let:"Let It Go mode does not save your text. The krathong floats away anonymously.",
+go:"🌊 Float my krathong",river:"The River of Wishes",stat:"Krathongs on the river: ",pubn:"Public wishes: ",live:"🟢 Live: shared with everyone",loc:"💾 Local mode (open via the server to share with everyone)",dl:"⬇️ Save wish card",clr:"🧹 Clear river",
+foot:"Arup Bangkok internal activity • Messages stay in your own browser only",footS:"Arup Bangkok internal activity • Only wishes marked “Show” are shared with everyone; private ones are never stored",
+letTip:"🕊️ A worry that has been let go",empty:"Please write something first",sent:"Your krathong is floating away 🪔",noCard:"Float a krathong first to save a card",
+cleared:"River cleared",anon:"Anonymous",
+names:["Lotus","Marigold","Orchid","Jasmine"],
+facts:["Did you know? Loy Krathong falls on the full moon of the 12th lunar month in the Thai calendar.","Did you know? ‘Loy’ means to float, and ‘krathong’ was traditionally made from banana trunk and leaves.","Did you know? Bread or natural-material krathongs help keep rivers cleaner.","Did you know? The festival honours the water goddess and symbolises letting go of anger and sorrow.","Did you know? In northern Thailand it is called Yi Peng and sky lanterns are released too.","Did you know? The candle and incense on a krathong symbolise light and respect."]}
+};
+var COLORS=[["#ff8fc7","#ffd1ea"],["#ffb300","#ffe082"],["#9a7bff","#d9ccff"],["#ffffff","#e8f5e9"]];
+var lang="th",sel=0,mode="wish",last=null;
+var SAMPLES=[{t:"Good health for everyone on the team 🙏",n:"Team",k:1},{t:"ขอให้โปรเจกต์ผ่านฉลุย ไม่มีแก้แบบ!",n:"",k:0},{t:"Safe travels and a calm year ahead",n:"Guest",k:2},{t:"ขอให้ได้เจอแต่คนใจดี",n:"",k:3},{t:"More coffee, fewer meetings ☕",n:"Anon",k:1}];
+var $=function(i){return document.getElementById(i)};
+
+function svg(k){
+  var c=COLORS[k],p="",i,a,x,y;
+  for(i=0;i<12;i++){a=i*30;p+='<ellipse cx="60" cy="38" rx="9" ry="20" fill="'+c[0]+'" stroke="'+c[1]+'" stroke-width="1.5" transform="rotate('+a+' 60 60)"/>';}
+  for(i=0;i<8;i++){a=i*45+22;p+='<ellipse cx="60" cy="46" rx="7" ry="14" fill="'+c[1]+'" opacity=".95" transform="rotate('+a+' 60 60)"/>';}
+  return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="70" rx="56" ry="38" fill="#2e7d32"/><ellipse cx="60" cy="66" rx="52" ry="34" fill="#43a047"/>'
+   +'<g transform="translate(0,6) scale(1,.8) translate(0,10)">'+p+'</g>'
+   +'<rect x="57" y="34" width="6" height="26" rx="2" fill="#fff5d6"/><ellipse cx="60" cy="30" rx="6" ry="10" fill="#ffb300"/><ellipse cx="60" cy="31" rx="3" ry="6" fill="#fff59d"/>'
+   +'<rect x="76" y="26" width="2" height="30" fill="#8d6e63" transform="rotate(12 77 40)"/></svg>';
+}
+
+function stars(){var s=$("stars"),h="";for(var i=0;i<70;i++){h+='<i style="left:'+Math.random()*100+'%;top:'+Math.random()*70+'%;animation-delay:'+Math.random()*3+'s"></i>';}s.innerHTML=h;}
+
+function load(){try{return JSON.parse(localStorage.getItem("lk_river")||"null")}catch(e){return null}}
+function save(a){try{localStorage.setItem("lk_river",JSON.stringify(a))}catch(e){}}
+var items=load();
+if(!items){items=SAMPLES.map(function(s){return {t:s.t,n:s.n,k:s.k,m:"wish"}});}
+var SHARED=false,API="api/wishes",ADMIN=(new URLSearchParams(location.search)).get("admin")||"",sig="";
+function sigOf(a){return a.length+":"+(a.length?a[a.length-1].id||"":"");}
+function pull(first){
+  return fetch(API,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+    var was=SHARED;SHARED=true;
+    var s2=sigOf(d.items);
+    if(!was||s2!==sig){if(!was){Object.keys(nodes).forEach(function(i){nodes[i].remove()});nodes={};firstRender=true;}items=d.items;sig=s2;render();}
+    if(!was)setLang(lang);
+  }).catch(function(){if(SHARED){SHARED=false;render();}});
+}
+
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display="none"},2200);}
+
+var nodes={},firstRender=true,uid=function(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)};
+function render(){
+  var r=$("river");
+  items.forEach(function(it){if(!it.id)it.id=uid();});
+  var list=items.slice(-14),keep={};
+  list.forEach(function(it,idx){
+    keep[it.id]=1;
+    var b=nodes[it.id];
+    if(!b){
+      b=document.createElement("button");b.type="button";b.className="k"+(firstRender?"":" fresh");
+      var dur=55+(idx*7)%30,top=60+((idx*53)%130);
+      b.style.top=top+"px";b.style.animationDuration=dur+"s";
+      b.style.animationDelay=firstRender?"-"+((idx*13)%dur)+"s":"0s";
+      b.innerHTML='<span class="capwrap"></span><div class="b" style="animation-delay:-'+(idx%3)+'s">'+svg(it.k)+'</div>';
+      b.addEventListener("click",function(){showTip(it)});
+      r.appendChild(b);nodes[it.id]=b;
+    }
+    b.setAttribute("aria-label",pub(it)?it.t:(it.m==="let"?T[lang].letTip:T[lang].privTip));
+    var cw=b.firstChild;cw.innerHTML="";
+    if(pub(it)){
+      var c=document.createElement("div");c.className="cap";
+      var t=document.createElement("span");t.textContent="“"+it.t+"”";c.appendChild(t);
+      var n=document.createElement("em");n.textContent="— "+(it.n||T[lang].anon);c.appendChild(n);
+      cw.appendChild(c);
+    }
+  });
+  Object.keys(nodes).forEach(function(id){if(!keep[id]){nodes[id].remove();delete nodes[id];}});
+  firstRender=false;
+  $("stat").textContent=(SHARED?T[lang].live:T[lang].loc)+" • "+T[lang].stat+items.length+" • "+T[lang].pubn+items.filter(pub).length;
+  $("clr").style.display=(SHARED&&!ADMIN)?"none":"";
+  $("t_foot").textContent=SHARED?T[lang].footS:T[lang].foot;
+  renderWall();
+}
+function pub(it){return it.m==="wish"&&it.show!==false&&!!it.t;}
+function renderWall(){
+  var w=$("wall");w.innerHTML="";
+  var list=items.filter(pub).slice(-30).reverse();
+  if(!list.length){var e=document.createElement("div");e.className="empty";e.textContent=T[lang].wallEmpty;w.appendChild(e);return;}
+  list.forEach(function(it){
+    var d=document.createElement("div");d.className="wc";
+    d.appendChild(document.createTextNode("“"+it.t+"”"));
+    var b=document.createElement("b");b.textContent="— "+(it.n||T[lang].anon);d.appendChild(b);
+    w.appendChild(d);
+  });
+}
+function showTip(it){
+  var tip=$("tip");
+  tip.textContent=pub(it)?"“"+it.t+"” — "+(it.n||T[lang].anon):(it.m==="let"?T[lang].letTip:T[lang].privTip);
+  tip.style.display="block";clearTimeout(showTip.h);showTip.h=setTimeout(function(){tip.style.display="none"},4500);
+}
+
+function buildK(){
+  var g=$("kgrid");g.innerHTML="";
+  for(var i=0;i<4;i++){(function(i){
+    var b=document.createElement("button");b.type="button";b.className="kopt"+(i===sel?" sel":"");
+    b.innerHTML=svg(i)+'<div>'+T[lang].names[i]+'</div>';
+    b.addEventListener("click",function(){sel=i;buildK()});
+    g.appendChild(b);
+  })(i)}
+}
+
+function setLang(l){
+  lang=l;var t=T[l];document.documentElement.lang=l;
+  $("lTH").className=l==="th"?"on":"";$("lEN").className=l==="en"?"on":"";
+  $("t_title").textContent=t.title;$("t_sub").textContent=t.sub;$("t_s1").textContent=t.s1;$("t_s2").textContent=t.s2;
+  $("mWish").textContent=t.wish;$("mLet").textContent=t.let;$("name").placeholder=t.name;$("t_show").textContent=t.show;$("t_wall").textContent=t.wall;
+  $("float").textContent=t.go;$("t_river").textContent=t.river;$("dl").textContent=t.dl;$("clr").textContent=t.clr;
+  updateMode();buildK();render();newFact();
+}
+function updateMode(){
+  var t=T[lang];
+  $("mWish").className=mode==="wish"?"sel":"";$("mLet").className=mode==="let"?"sel":"";
+  $("wish").placeholder=mode==="wish"?t.ph_wish:t.ph_let;
+  $("t_hint").textContent=mode==="wish"?t.hint_wish:t.hint_let;
+  $("togBox").style.display=mode==="wish"?"flex":"none";
+  $("name").style.display=(mode==="wish"&&$("showWish").checked)?"block":"none";
+}
+function newFact(){var f=T[lang].facts;$("fact").textContent=f[Math.floor(Math.random()*f.length)];}
+
+$("lTH").onclick=function(){setLang("th")};$("lEN").onclick=function(){setLang("en")};
+$("mWish").onclick=function(){mode="wish";updateMode()};
+$("mLet").onclick=function(){mode="let";updateMode()};
+$("showWish").addEventListener("change",updateMode);
+$("wish").addEventListener("input",function(){$("c").textContent=this.value.length});
+
+$("float").onclick=function(){
+  var txt=$("wish").value.trim();
+  if(!txt){toast(T[lang].empty);return;}
+  var show=mode==="wish"&&$("showWish").checked;
+  var it={id:uid(),t:show?txt:"",n:show?$("name").value.trim():"",k:sel,m:mode,show:show};
+  last={t:txt,n:it.n,k:sel,m:mode};
+  if(SHARED){
+    fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(it)})
+      .then(function(r){if(!r.ok)throw 0;return pull()}).catch(function(){toast(lang==="th"?"ส่งไม่สำเร็จ ลองอีกครั้ง":"Could not send, please retry")});
+    items.push(it);render();
+  }else{
+    items.push(it);if(items.length>40)items.shift();
+    save(items);render();
+  }
+  newFact();
+  $("wish").value="";$("c").textContent="0";
+  toast(T[lang].sent);
+  $("river").scrollIntoView({behavior:"smooth",block:"center"});
+};
+$("clr").onclick=function(){
+  if(SHARED){
+    fetch(API+"?key="+encodeURIComponent(ADMIN),{method:"DELETE"}).then(function(r){if(!r.ok)throw 0;items=[];sig="";return pull()}).then(function(){toast(T[lang].cleared)}).catch(function(){toast("Admin key invalid")});
+    return;
+  }
+  items=[];save(items);render();toast(T[lang].cleared);
+};
+
+function wrap(ctx,text,x,y,maxW,lh){
+  var chars=Array.from(text),line="",lines=[];
+  chars.forEach(function(ch){var test=line+ch;if(ctx.measureText(test).width>maxW&&line){lines.push(line);line=ch}else line=test});
+  lines.push(line);
+  lines.slice(0,8).forEach(function(l,i){ctx.fillText(l,x,y+i*lh)});
+  return lines.length;
+}
+$("dl").onclick=function(){
+  if(!last){toast(T[lang].noCard);return;}
+  var cv=document.createElement("canvas");cv.width=800;cv.height=1000;var ctx=cv.getContext("2d");
+  var g=ctx.createLinearGradient(0,0,0,1000);g.addColorStop(0,"#050818");g.addColorStop(.6,"#0d1745");g.addColorStop(1,"#16336b");
+  ctx.fillStyle=g;ctx.fillRect(0,0,800,1000);
+  for(var i=0;i<80;i++){ctx.fillStyle="rgba(255,255,255,"+Math.random()+")";ctx.fillRect(Math.random()*800,Math.random()*500,2,2);}
+  ctx.textAlign="center";ctx.fillStyle="#ffd27a";ctx.font="bold 44px 'Segoe UI','Noto Sans Thai',sans-serif";
+  ctx.fillText("Arup Bangkok • Loy Krathong 2026",400,100);
+  ctx.font="28px 'Segoe UI','Noto Sans Thai',sans-serif";ctx.fillStyle="#fff";
+  var title=last.m==="wish"?"✨ Make a Wish":"🕊️ Let It Go";ctx.fillText(title,400,160);
+  var img=new Image();
+  img.onload=function(){
+    ctx.drawImage(img,250,230,300,300);
+    ctx.fillStyle="#fff";ctx.font="32px 'Segoe UI','Noto Sans Thai',sans-serif";
+    if(last.m==="wish"){
+      var n=wrap(ctx,"“"+last.t+"”",400,620,640,48);
+      if(last.n){ctx.fillStyle="#ffd27a";ctx.font="26px 'Segoe UI','Noto Sans Thai',sans-serif";ctx.fillText("— "+last.n,400,640+n*48);}
+    }else{
+      ctx.fillText(lang==="th"?"ปล่อยวางไปกับสายน้ำแล้ว":"Let go, and flow with the water",400,640);
+    }
+    var a=document.createElement("a");a.download="loy-krathong-card.png";a.href=cv.toDataURL("image/png");a.click();
+  };
+  img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg(last.k).replace('<svg ','<svg width="300" height="300" '));
+};
+
+function lanterns(){
+  var box=$("lanterns"),h="",i,n=window.innerWidth<600?7:12;
+  for(i=0;i<n;i++){
+    var sz=.6+Math.random()*.9,dur=22+Math.random()*22,del=-Math.random()*dur,sd=3+Math.random()*3;
+    h+='<div class="lan" style="left:'+(Math.random()*96)+'%;transform-origin:center;animation-duration:'+dur+'s;animation-delay:'+del+'s;scale:'+sz+'"><div class="sw" style="animation-duration:'+sd+'s"><div class="bd"></div></div></div>';
+  }
+  box.innerHTML=h;
+}
+function fireworks(){
+  var cv=$("fw"),ctx=cv.getContext("2d"),W,H,dpr=Math.min(window.devicePixelRatio||1,2),parts=[],rockets=[],next=0;
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  function size(){W=window.innerWidth;H=window.innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  size();window.addEventListener("resize",size);
+  var PAL=[[255,210,122],[255,120,150],[130,200,255],[190,150,255],[140,255,190],[255,255,255],[255,160,60]];
+  function burst(x,y){
+    var c=PAL[Math.floor(Math.random()*PAL.length)],c2=PAL[Math.floor(Math.random()*PAL.length)],n=46+Math.floor(Math.random()*22),sp=2.2+Math.random()*2.2,ring=Math.random()<.35;
+    for(var i=0;i<n;i++){
+      var a=Math.PI*2*i/n+(ring?0:Math.random()*.3),v=ring?sp:sp*(.3+Math.random()*.9);
+      parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,dec:.009+Math.random()*.008,c:Math.random()<.7?c:c2});
+    }
+  }
+  function frame(t){
+    ctx.globalCompositeOperation="destination-out";ctx.fillStyle="rgba(0,0,0,.22)";ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation="lighter";
+    if(t>next&&rockets.length<3){
+      rockets.push({x:W*(.1+Math.random()*.8),y:H+10,ty:H*(.1+Math.random()*.35),vy:-(7+Math.random()*3)});
+      next=t+900+Math.random()*1800;
+    }
+    rockets=rockets.filter(function(r){
+      r.y+=r.vy;r.vy*=.985;
+      ctx.fillStyle="rgba(255,230,170,.9)";ctx.fillRect(r.x,r.y,2,6);
+      if(r.y<=r.ty||r.vy>-1.6){burst(r.x,r.y);return false;}
+      return true;
+    });
+    if(parts.length>700)parts.splice(0,parts.length-700);
+    parts=parts.filter(function(p){
+      p.x+=p.vx;p.y+=p.vy;p.vx*=.985;p.vy=p.vy*.985+.035;p.life-=p.dec;
+      if(p.life<=0)return false;
+      ctx.fillStyle="rgba("+p.c[0]+","+p.c[1]+","+p.c[2]+","+p.life.toFixed(2)+")";
+      ctx.beginPath();ctx.arc(p.x,p.y,1.6*p.life+.6,0,6.283);ctx.fill();
+      return true;
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+stars();lanterns();fireworks();setLang("th");
+if(location.protocol.indexOf("http")===0){pull();setInterval(pull,6000);}
+})();
+</script>
+</body>
+</html>

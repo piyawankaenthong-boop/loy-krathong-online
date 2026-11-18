@@ -1,0 +1,8 @@
+{
+  "name": "loy-krathong-online",
+  "version": "1.0.0",
+  "description": "Arup Bangkok Loy Krathong Online",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}
