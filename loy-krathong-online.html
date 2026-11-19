@@ -77,6 +77,34 @@ color:#fff;text-align:center;pointer-events:none;box-shadow:0 0 12px rgba(255,19
 .wc{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.92rem;word-break:break-word}
 .wc b{display:block;margin-top:6px;font-size:.8rem;color:var(--gold);font-weight:600}
 .empty{opacity:.7;font-size:.9rem}
+.kseg{margin-bottom:12px}
+.kgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.kc{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.kc h3{font-size:.98rem;color:var(--gold);margin-bottom:6px}
+.kc p{font-size:.9rem;line-height:1.5;opacity:.95}
+.kn{display:inline-block;background:var(--gold);color:var(--ink);width:22px;height:22px;border-radius:50%;text-align:center;font-size:.78rem;font-weight:700;line-height:22px;margin-right:6px}
+.chart{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.chart h3{font-size:.95rem;color:var(--gold);margin-bottom:8px}
+.br{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:.85rem}
+.br .y{width:44px;flex:none}
+.br .tr{flex:1;background:rgba(255,255,255,.08);border-radius:8px;overflow:hidden;height:22px}
+.br .fl{height:100%;background:linear-gradient(90deg,#43a047,#9be37f);border-radius:8px;animation:grow 1.1s ease-out}
+.br .v{width:70px;flex:none;text-align:right;font-variant-numeric:tabular-nums}
+@keyframes grow{from{width:0}}
+.stack{display:flex;height:26px;border-radius:8px;overflow:hidden;margin:8px 0}
+.stack span{animation:grow 1.1s ease-out}
+.leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.note{font-size:.84rem;opacity:.85;margin-top:8px}
+.vnote{margin-top:12px;padding:10px 14px;border-radius:12px;background:rgba(67,160,71,.18);border:1px solid rgba(155,227,127,.5);font-size:.9rem}
+.src{font-size:.75rem;opacity:.7;margin-top:12px;line-height:1.6}
+.src a{color:var(--gold)}
+.adm{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.adm input{flex:1;min-width:180px;margin-top:0}
+.adm .go{width:auto;margin-top:0;padding:10px 22px}
+.admb{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;padding:10px 14px;border-radius:12px;background:rgba(255,210,122,.15);border:1px solid var(--gold);font-size:.92rem}
+.admb button{background:none;border:1px solid var(--line);color:#fff;border-radius:999px;padding:4px 14px;cursor:pointer}
+.danger{border-color:#ff8a8a !important;background:rgba(255,80,80,.18) !important}
 footer{text-align:center;font-size:.8rem;opacity:.65;margin-top:10px}
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);padding:10px 18px;border-radius:999px;font-weight:700;display:none;z-index:20}
 </style>
@@ -92,6 +120,14 @@ footer{text-align:center;font-size:.8rem;opacity:.65;margin-top:10px}
   </div>
 </header>
 <p class="sub" id="t_sub"></p>
+<section class="panel" id="adminBox" style="display:none">
+  <h2 id="t_adm"></h2>
+  <form class="adm" id="admForm">
+    <input type="password" id="admKey" autocomplete="current-password">
+    <button type="submit" class="go" id="admGo"></button>
+  </form>
+  <p class="hint" id="admMsg" role="alert"></p>
+</section>
 
 <section class="panel">
   <h2 id="t_s1"></h2>
@@ -111,6 +147,7 @@ footer{text-align:center;font-size:.8rem;opacity:.65;margin-top:10px}
 
 <section class="panel">
   <h2 id="t_river"></h2>
+  <div class="admb" id="admBadge" style="display:none"><span id="t_admb"></span><button type="button" id="admOut"></button></div>
   <div class="stat" id="stat"></div>
   <div class="river" id="river" aria-live="polite">
     <svg class="wave" style="bottom:20px" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 30 Q50 0 100 30 T200 30 T300 30 T400 30 T500 30 T600 30 T700 30 T800 30 T900 30 T1000 30 T1100 30 T1200 30 V60 H0Z" fill="#7fb4ff"/></svg>
@@ -127,6 +164,15 @@ footer{text-align:center;font-size:.8rem;opacity:.65;margin-top:10px}
   <h2 id="t_wall"></h2>
   <div class="wall" id="wall"></div>
 </section>
+<section class="panel" id="knowSec">
+  <h2 id="t_know"></h2>
+  <div class="seg kseg" role="tablist">
+    <button type="button" id="kH" role="tab" class="sel"></button>
+    <button type="button" id="kE" role="tab"></button>
+  </div>
+  <div id="kBody"></div>
+  <p class="src" id="kSrc"></p>
+</section>
 <footer id="t_foot"></footer>
 </div>
 <div id="toast" role="status"></div>
@@ -138,7 +184,27 @@ th:{title:"🪔 Arup Bangkok ลอยกระทงออนไลน์ 2569"
 s1:"1. เลือกกระทงของคุณ",s2:"2. เลือกสิ่งที่จะทำ",wish:"✨ ขอพร (Make a Wish)",let:"🕊️ ปล่อยวาง (Let It Go)",
 ph_wish:"เขียนคำขอพรของคุณ…",ph_let:"เขียนสิ่งที่อยากปล่อยวาง (จะไม่ถูกบันทึกหรือแสดงให้ใครเห็น)…",
 name:"ชื่อหรือชื่อเล่น (ไม่ใส่ก็ได้)",show:"แสดงคำอธิษฐานของฉันให้คนอื่นเห็น",wall:"💬 กำแพงคำอธิษฐาน",wallEmpty:"ยังไม่มีคำอธิษฐานที่เปิดเผย",privTip:"🔒 คำอธิษฐานส่วนตัว",hint_wish:"ถ้าเปิดแสดง คำอธิษฐานจะปรากฏบนแม่น้ำและกำแพงคำอธิษฐาน ถ้าปิด กระทงจะลอยไปโดยไม่เก็บข้อความ",hint_let:"โหมดปล่อยวางจะไม่เก็บข้อความ กระทงจะลอยไปแบบไม่ระบุชื่อ",
-go:"🌊 ลอยกระทง",river:"แม่น้ำแห่งพร",stat:"กระทงบนแม่น้ำ: ",pubn:"เปิดเผยคำอธิษฐาน: ",live:"🟢 ออนไลน์ ทุกคนเห็นร่วมกัน",loc:"💾 โหมดในเครื่อง (เปิดผ่านเซิร์ฟเวอร์เพื่อแชร์กับทุกคน)",dl:"⬇️ บันทึกการ์ดพร",clr:"🧹 ล้างแม่น้ำ",
+go:"🌊 ลอยกระทง",river:"แม่น้ำแห่งพร",adm:"🔐 เข้าสู่ระบบผู้ดูแล",admPh:"รหัสผู้ดูแล",admGo:"เข้าสู่ระบบ",admBad:"รหัสไม่ถูกต้อง",admNoKey:"เซิร์ฟเวอร์ยังไม่ได้ตั้งค่า ADMIN_KEY จึงยังเปิดโหมดผู้ดูแลไม่ได้",admErr:"เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ลองอีกครั้ง",admBadge:"🔐 โหมดผู้ดูแล: ปุ่มล้างแม่น้ำพร้อมใช้งาน",admOut:"ออกจากระบบ",admConfirm:"ล้างแม่น้ำทั้งหมด? คำอธิษฐานของทุกคนจะหายถาวร",
+know:"📚 ความรู้เรื่องลอยกระทง",kTabH:"📜 ประวัติความเป็นมา",kTabE:"🌿 ใส่ใจสิ่งแวดล้อม",
+kh:[["ชื่อนี้แปลว่าอะไร","“ลอย” คือการลอยน้ำ ส่วน “กระทง” คือภาชนะเล็ก ๆ ที่ตกแต่งสำหรับลอย จัดในคืนวันเพ็ญเดือน 12 ตามปฏิทินจันทรคติของไทย"],
+["ขอบคุณและขอขมาแม่น้ำ","ผู้คนลอยกระทงเพื่อขอบคุณและขอขมาพระแม่คงคา เทพีแห่งน้ำ สำหรับการใช้น้ำและทำให้แหล่งน้ำสกปรก และยังเป็นสัญลักษณ์ของการปล่อยเรื่องร้าย ๆ ให้ลอยไปกับสายน้ำ"],
+["ตำนานนางนพมาศ","เรื่องเล่ายอดนิยมว่านางนพมาศ ข้าราชบริพารสมัยสุโขทัย ประดิษฐ์กระทงรูปดอกบัวจากใบตอง ดอกไม้ ธูป และเทียน ถวายพระมหากษัตริย์ แต่นักประวัติศาสตร์ชี้ว่าหนังสือที่เล่าเรื่องนี้เขียนขึ้นหลังยุคสุโขทัยหลายร้อยปี จึงถือเป็นตำนานมากกว่าหลักฐานที่ยืนยันได้"],
+["รากเหง้าที่เก่ากว่านั้น","การลอยแสงสว่างบนน้ำมักถูกเชื่อมโยงกับพิธีพราหมณ์โบราณ และพิธีจองเปรียงในราชสำนัก ซึ่งเป็นพิธีโคมไฟหลวง"],
+["ลอยกระทง ไม่เหมือน ยี่เป็ง","ยี่เป็งเป็นประเพณีของภาคเหนือ (ล้านนา) ที่โดดเด่นเรื่องโคมลอย สองงานมักจัดใกล้กัน โดยเฉพาะที่เชียงใหม่ แต่มีประวัติความเป็นมาต่างกัน"],
+["กระทงแบบดั้งเดิม","ฐานทำจากหยวกกล้วย ห่อด้วยใบตอง ประดับดอกไม้ ธูป และเทียน บางคนใส่เส้นผมหรือเล็บ และเหรียญลงไปด้วย"]],
+chartT:"จำนวนกระทงที่ กทม. เก็บได้หลังวันลอยกระทง",chartSum:"ปี 2568 ลดลง 24% จากปีก่อน และลดลงต่อเนื่องสองปีติดต่อกัน",
+yrs:["2566","2567","2568"],matT:"วัสดุของกระทงที่เก็บได้ ปี 2568",
+mats:["วัสดุธรรมชาติ","ขนมปัง","โฟม"],
+ke:[["เลือกวัสดุธรรมชาติ","ใช้ใบตองและหยวกกล้วยที่ย่อยสลายง่าย หลีกเลี่ยงโฟมและเครื่องประดับพลาสติก"],
+["ไม่ใช้กระทงขนมปัง","ขนมปังย่อยสลายได้ แต่ถ้ามีจำนวนมากในบ่อหรือสระปิด จะเน่าและทำให้ออกซิเจนในน้ำลดลง กทม. เล่าว่าบ่อน้ำในสวนสันติภาพใช้เวลาฟื้นฟูราว 4 เดือน หลังคืนลอยกระทงเพียงคืนเดียว"],
+["หนึ่งครอบครัว หนึ่งกระทง","กรมควบคุมมลพิษแนะนำให้ใช้กระทงร่วมกันในครอบครัว เพื่อลดปริมาณขยะ"],
+["ลอยในจุดที่กำหนด","ลอยเฉพาะบริเวณที่จัดไว้ เพื่อให้เก็บกวาดได้ง่าย"],
+["ลอยออนไลน์ ไม่มีขยะ","กทม. มีเว็บ greener.bangkok.go.th ให้ลอยกระทงออนไลน์ ปี 2568 มีผู้ลอยออนไลน์ 23,347 กระทง"],
+["กระทงที่เก็บได้ไปไหนต่อ","กระทงวัสดุธรรมชาติถูกบดส่งโรงงานปุ๋ยอินทรีย์หนองแขม ส่วนโฟมและวัสดุที่ย่อยสลายไม่ได้ต้องฝังกลบ"]],
+vnote:"🌱 กระทง พลุ และโคมลอยในเว็บนี้เป็นภาพจำลองทั้งหมด จึงไม่มีขยะเลย ส่วนของจริง กทม. ประกาศห้ามจุดพลุและปล่อยโคมลอยในสวนสาธารณะที่เปิดให้ลอยกระทง เพื่อความปลอดภัย",
+srcL:"ที่มา: ",
+facts2:["รู้ไหม? ปี 2568 กทม. เก็บกระทงได้ 391,027 ใบ ลดลง 24% จากปีก่อน","รู้ไหม? กระทงที่เก็บได้ในปี 2568 เป็นวัสดุธรรมชาติถึง 82.76% และถูกนำไปทำปุ๋ยอินทรีย์","รู้ไหม? ตำนานนางนพมาศเล่าต่อกันมานาน แต่นักประวัติศาสตร์ชี้ว่าหนังสือที่เล่าเรื่องนี้เขียนขึ้นหลังยุคสุโขทัยหลายร้อยปี"],
+stat:"กระทงบนแม่น้ำ: ",pubn:"เปิดเผยคำอธิษฐาน: ",live:"🟢 ออนไลน์ ทุกคนเห็นร่วมกัน",loc:"💾 โหมดในเครื่อง (เปิดผ่านเซิร์ฟเวอร์เพื่อแชร์กับทุกคน)",dl:"⬇️ บันทึกการ์ดพร",clr:"🧹 ล้างแม่น้ำ",
 foot:"กิจกรรมภายในบริษัท Arup Bangkok • ข้อความถูกเก็บในเบราว์เซอร์ของคุณเท่านั้น",footS:"กิจกรรมภายในบริษัท Arup Bangkok • เฉพาะคำอธิษฐานที่เลือก “แสดง” เท่านั้นที่ถูกแชร์ให้ทุกคนเห็น ส่วนตัวจะไม่ถูกเก็บ",
 letTip:"🕊️ ความกังวลที่ถูกปล่อยวางแล้ว",empty:"กรุณาเขียนข้อความก่อน",sent:"กระทงของคุณลอยไปแล้ว 🪔",noCard:"ลอยกระทงก่อนเพื่อบันทึกการ์ด",
 cleared:"ล้างแม่น้ำแล้ว",anon:"ไม่ระบุชื่อ",
@@ -148,7 +214,27 @@ en:{title:"🪔 Arup Bangkok Loy Krathong Online 2026",sub:"Let go of what weigh
 s1:"1. Choose your krathong",s2:"2. Choose what to do",wish:"✨ Make a Wish",let:"🕊️ Let It Go",
 ph_wish:"Write your wish…",ph_let:"Write what you want to let go of (it is never saved or shown)…",
 name:"Name or nickname (optional)",show:"Show my wish to others",wall:"💬 Wish Wall",wallEmpty:"No public wishes yet",privTip:"🔒 A private wish",hint_wish:"If on, your wish appears on the river and the Wish Wall. If off, the krathong floats away and your text is not saved.",hint_let:"Let It Go mode does not save your text. The krathong floats away anonymously.",
-go:"🌊 Float my krathong",river:"The River of Wishes",stat:"Krathongs on the river: ",pubn:"Public wishes: ",live:"🟢 Live: shared with everyone",loc:"💾 Local mode (open via the server to share with everyone)",dl:"⬇️ Save wish card",clr:"🧹 Clear river",
+go:"🌊 Float my krathong",river:"The River of Wishes",adm:"🔐 Admin sign-in",admPh:"Admin key",admGo:"Sign in",admBad:"Incorrect key",admNoKey:"ADMIN_KEY is not set on the server, so admin mode is unavailable",admErr:"Cannot reach the server, please retry",admBadge:"🔐 Admin mode: the Clear river button is available",admOut:"Sign out",admConfirm:"Clear the whole river? Everyone’s wishes will be permanently deleted.",
+know:"📚 Loy Krathong Knowledge",kTabH:"📜 History",kTabE:"🌿 Caring for the environment",
+kh:[["What the name means","“Loy” means to float and “krathong” is a small decorated float. The festival falls on the full-moon night of the 12th month of the Thai lunar calendar."],
+["Thanking and apologising to the water","People thank and ask forgiveness from Phra Mae Khongkha, the water goddess, for using and polluting the waterways. Floating the krathong also symbolises letting misfortune drift away."],
+["The legend of Nang Noppamas","The best-known story says Nang Noppamas, a lady of the Sukhothai court, shaped a lotus-like float from banana leaves, flowers, incense and a candle and offered it to the king. Historians note that the book telling her story was written centuries after Sukhothai, so it is regarded as legend rather than proven fact."],
+["Older roots","Floating lights are often linked to ancient Brahmin rites and to Chong Priang, a royal lamp ceremony at court."],
+["Loy Krathong is not Yi Peng","Yi Peng is a northern Lanna festival known for sky lanterns. The two often happen around the same time, especially in Chiang Mai, but they have different histories."],
+["The traditional krathong","A banana-trunk base wrapped in banana leaves and decorated with flowers, incense and a candle. Some people add a strand of hair or a fingernail, and coins."]],
+chartT:"Krathongs collected by Bangkok (BMA) after the festival",chartSum:"2025 was 24% lower than the previous year, and the number has fallen two years in a row.",
+yrs:["2023","2024","2025"],matT:"Materials of krathongs collected in 2025",
+mats:["Natural materials","Bread","Foam"],
+ke:[["Choose natural materials","Use banana leaves and trunk, which break down easily. Avoid foam and plastic decorations."],
+["Skip bread krathongs","Bread is biodegradable, but large amounts in closed ponds rot and lower the oxygen in the water. The BMA says a park pond took about four months to restore after a single festival night."],
+["One family, one krathong","Thailand’s Pollution Control Department suggests sharing one krathong per family to reduce waste."],
+["Float in designated areas","Use the areas set up for floating so clean-up is quick and easy."],
+["Float online, zero waste","The BMA runs greener.bangkok.go.th for virtual floating. In 2025, 23,347 krathongs were floated online."],
+["Where collected krathongs go","Natural krathongs are shredded and sent to the Nong Khaem organic fertiliser plant. Foam and non-degradable items go to landfill."]],
+vnote:"🌱 The krathongs, fireworks and sky lanterns on this site are all virtual, so there is no waste. For the real thing, Bangkok prohibits fireworks and sky lanterns in the parks opened for floating, for safety.",
+srcL:"Sources: ",
+facts2:["Did you know? In 2025 Bangkok collected 391,027 krathongs, 24% fewer than the year before.","Did you know? 82.76% of the krathongs collected in 2025 were made of natural materials and were turned into organic fertiliser.","Did you know? The Nang Noppamas story is well loved, but historians note the book telling it was written centuries after Sukhothai."],
+stat:"Krathongs on the river: ",pubn:"Public wishes: ",live:"🟢 Live: shared with everyone",loc:"💾 Local mode (open via the server to share with everyone)",dl:"⬇️ Save wish card",clr:"🧹 Clear river",
 foot:"Arup Bangkok internal activity • Messages stay in your own browser only",footS:"Arup Bangkok internal activity • Only wishes marked “Show” are shared with everyone; private ones are never stored",
 letTip:"🕊️ A worry that has been let go",empty:"Please write something first",sent:"Your krathong is floating away 🪔",noCard:"Float a krathong first to save a card",
 cleared:"River cleared",anon:"Anonymous",
@@ -176,15 +262,17 @@ function load(){try{return JSON.parse(localStorage.getItem("lk_river")||"null")}
 function save(a){try{localStorage.setItem("lk_river",JSON.stringify(a))}catch(e){}}
 var items=load();
 if(!items){items=SAMPLES.map(function(s){return {t:s.t,n:s.n,k:s.k,m:"wish"}});}
-var SHARED=false,API="api/wishes",ADMIN=(new URLSearchParams(location.search)).get("admin")||"",sig="";
+var SHARED=false,API="/api/wishes",sig="";
+var ISADMIN=/^\/admin\/?$/.test(location.pathname),ADMIN="",authed=false,probed=location.protocol.indexOf("http")!==0;
+try{ADMIN=sessionStorage.getItem("lk_admin")||""}catch(e){}
 function sigOf(a){return a.length+":"+(a.length?a[a.length-1].id||"":"");}
 function pull(first){
   return fetch(API,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
-    var was=SHARED;SHARED=true;
+    var was=SHARED;SHARED=true;probed=true;
     var s2=sigOf(d.items);
     if(!was||s2!==sig){if(!was){Object.keys(nodes).forEach(function(i){nodes[i].remove()});nodes={};firstRender=true;}items=d.items;sig=s2;render();}
     if(!was)setLang(lang);
-  }).catch(function(){if(SHARED){SHARED=false;render();}});
+  }).catch(function(){SHARED=false;probed=true;render();});
 }
 
 function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display="none"},2200);}
@@ -218,8 +306,7 @@ function render(){
   Object.keys(nodes).forEach(function(id){if(!keep[id]){nodes[id].remove();delete nodes[id];}});
   firstRender=false;
   $("stat").textContent=(SHARED?T[lang].live:T[lang].loc)+" • "+T[lang].stat+items.length+" • "+T[lang].pubn+items.filter(pub).length;
-  $("clr").style.display=(SHARED&&!ADMIN)?"none":"";
-  $("t_foot").textContent=SHARED?T[lang].footS:T[lang].foot;
+  $("clr").style.display=(!probed?false:(SHARED?(ISADMIN&&authed):true))?"":"none";
   renderWall();
 }
 function pub(it){return it.m==="wish"&&it.show!==false&&!!it.t;}
@@ -254,9 +341,9 @@ function setLang(l){
   lang=l;var t=T[l];document.documentElement.lang=l;
   $("lTH").className=l==="th"?"on":"";$("lEN").className=l==="en"?"on":"";
   $("t_title").textContent=t.title;$("t_sub").textContent=t.sub;$("t_s1").textContent=t.s1;$("t_s2").textContent=t.s2;
-  $("mWish").textContent=t.wish;$("mLet").textContent=t.let;$("name").placeholder=t.name;$("t_show").textContent=t.show;$("t_wall").textContent=t.wall;
+  $("mWish").textContent=t.wish;$("mLet").textContent=t.let;$("name").placeholder=t.name;$("t_adm").textContent=t.adm;$("admKey").placeholder=t.admPh;$("admGo").textContent=t.admGo;$("t_admb").textContent=t.admBadge;$("admOut").textContent=t.admOut;$("t_show").textContent=t.show;$("t_wall").textContent=t.wall;
   $("float").textContent=t.go;$("t_river").textContent=t.river;$("dl").textContent=t.dl;$("clr").textContent=t.clr;
-  updateMode();buildK();render();newFact();
+  updateMode();buildK();render();newFact();buildKnow();admUI();
 }
 function updateMode(){
   var t=T[lang];
@@ -266,7 +353,45 @@ function updateMode(){
   $("togBox").style.display=mode==="wish"?"flex":"none";
   $("name").style.display=(mode==="wish"&&$("showWish").checked)?"block":"none";
 }
-function newFact(){var f=T[lang].facts;$("fact").textContent=f[Math.floor(Math.random()*f.length)];}
+
+var ktab="h";
+var SRC=[["BMA via The Nation","https://www.nationthailand.com/thailand/bangkok/40057826"],["PCD via TNA","https://tna.mcot.net/tna/th/news/list/130819"],["Thai PBS World","https://www.thaipbsworld.com/news/bma-asks-public-not-to-use-%E2%80%9Ckrathong%E2%80%9D-made-of-bread"],["The Nation (2026 parks)","https://www.nationthailand.com/thailand/bangkok/40073477"],["Duke Language School","https://dukelanguage.com/2026/11/loy-krathong-origin/"]];
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e;}
+function cards(list){
+  var g=el("div","kgrid2");
+  list.forEach(function(c,i){var d=el("div","kc");var h=el("h3");h.appendChild(el("span","kn",String(i+1)));h.appendChild(document.createTextNode(c[0]));d.appendChild(h);d.appendChild(el("p","",c[1]));g.appendChild(d);});
+  return g;
+}
+function buildKnow(){
+  var t=T[lang],b=$("kBody");b.innerHTML="";
+  $("t_know").textContent=t.know;$("kH").textContent=t.kTabH;$("kE").textContent=t.kTabE;
+  $("kH").className=ktab==="h"?"sel":"";$("kE").className=ktab==="e"?"sel":"";
+  $("kH").setAttribute("aria-selected",ktab==="h");$("kE").setAttribute("aria-selected",ktab==="e");
+  if(ktab==="h"){b.appendChild(cards(t.kh));}
+  else{
+    var data=[639828,514590,391027],max=639828;
+    var c1=el("div","chart");c1.appendChild(el("h3","",t.chartT));
+    data.forEach(function(v,i){
+      var r=el("div","br");r.appendChild(el("span","y",t.yrs[i]));
+      var tr=el("div","tr"),fl=el("div","fl");fl.style.width=(v/max*100).toFixed(1)+"%";tr.appendChild(fl);r.appendChild(tr);
+      r.appendChild(el("span","v",v.toLocaleString("en-US")));c1.appendChild(r);
+    });
+    c1.appendChild(el("p","note",t.chartSum));b.appendChild(c1);
+    var c2=el("div","chart");c2.appendChild(el("h3","",t.matT));
+    var pc=[82.76,10.01,7.23],col=["#43a047","#f0b04a","#7aa7d9"],st=el("div","stack");
+    pc.forEach(function(p,i){var s=el("span");s.style.width=p+"%";s.style.background=col[i];s.title=t.mats[i]+" "+p+"%";st.appendChild(s);});
+    c2.appendChild(st);var lg=el("div","leg");
+    pc.forEach(function(p,i){var s=el("span");var d=el("i");d.style.background=col[i];s.appendChild(d);s.appendChild(document.createTextNode(t.mats[i]+" "+p.toFixed(2)+"%"));lg.appendChild(s);});
+    c2.appendChild(lg);b.appendChild(c2);
+    b.appendChild(cards(t.ke));
+    b.appendChild(el("div","vnote",t.vnote));
+  }
+  var sp=$("kSrc");sp.innerHTML="";sp.appendChild(document.createTextNode(t.srcL));
+  SRC.forEach(function(x,i){var a=el("a","",x[0]);a.href=x[1];a.target="_blank";a.rel="noopener noreferrer";sp.appendChild(a);if(i<SRC.length-1)sp.appendChild(document.createTextNode(" • "));});
+}
+$("kH").onclick=function(){ktab="h";buildKnow()};
+$("kE").onclick=function(){ktab="e";buildKnow()};
+function newFact(){var f=T[lang].facts.concat(T[lang].facts2||[]);$("fact").textContent=f[Math.floor(Math.random()*f.length)];}
 
 $("lTH").onclick=function(){setLang("th")};$("lEN").onclick=function(){setLang("en")};
 $("mWish").onclick=function(){mode="wish";updateMode()};
@@ -293,9 +418,37 @@ $("float").onclick=function(){
   toast(T[lang].sent);
   $("river").scrollIntoView({behavior:"smooth",block:"center"});
 };
+function admSet(msg){$("admMsg").textContent=msg||"";}
+function admUI(){
+  $("adminBox").style.display=(ISADMIN&&SHARED&&!authed)?"block":"none";
+  $("admBadge").style.display=(ISADMIN&&authed)?"flex":"none";
+  render();
+}
+function admCheck(key){
+  return fetch("/api/admin/check",{headers:{"x-admin-key":key},cache:"no-store"}).then(function(r){return r.status}).catch(function(){return 0});
+}
+function admLogin(key){
+  return admCheck(key).then(function(st){
+    if(st===200){authed=true;ADMIN=key;try{sessionStorage.setItem("lk_admin",key)}catch(e){}admSet("");}
+    else{authed=false;ADMIN="";try{sessionStorage.removeItem("lk_admin")}catch(e){}
+      admSet(st===403?T[lang].admBad:st===503?T[lang].admNoKey:T[lang].admErr);}
+    admUI();return st;
+  });
+}
+$("admForm").addEventListener("submit",function(e){e.preventDefault();var k=$("admKey").value;if(!k)return;admLogin(k);$("admKey").value="";});
+$("admOut").onclick=function(){authed=false;ADMIN="";try{sessionStorage.removeItem("lk_admin")}catch(e){}admUI();};
+function admInit(){
+  if(!ISADMIN)return;
+  if(ADMIN)admLogin(ADMIN);else admUI();
+}
 $("clr").onclick=function(){
   if(SHARED){
-    fetch(API+"?key="+encodeURIComponent(ADMIN),{method:"DELETE"}).then(function(r){if(!r.ok)throw 0;items=[];sig="";return pull()}).then(function(){toast(T[lang].cleared)}).catch(function(){toast("Admin key invalid")});
+    if(!ISADMIN||!authed)return;
+    if(!window.confirm(T[lang].admConfirm))return;
+    fetch(API,{method:"DELETE",headers:{"x-admin-key":ADMIN}}).then(function(r){
+      if(r.status===403){authed=false;ADMIN="";admUI();throw 0;}
+      if(!r.ok)throw 0;items=[];sig="";return pull();
+    }).then(function(){toast(T[lang].cleared)}).catch(function(){});
     return;
   }
   items=[];save(items);render();toast(T[lang].cleared);
@@ -337,7 +490,7 @@ function lanterns(){
   var box=$("lanterns"),h="",i,n=window.innerWidth<600?7:12;
   for(i=0;i<n;i++){
     var sz=.6+Math.random()*.9,dur=22+Math.random()*22,del=-Math.random()*dur,sd=3+Math.random()*3;
-    h+='<div class="lan" style="left:'+(Math.random()*96)+'%;transform-origin:center;animation-duration:'+dur+'s;animation-delay:'+del+'s;scale:'+sz+'"><div class="sw" style="animation-duration:'+sd+'s"><div class="bd"></div></div></div>';
+    h+='<div class="lan" style="left:'+(Math.random()*96)+'%;animation-duration:'+dur+'s;animation-delay:'+del+'s;scale:'+sz+'"><div class="sw" style="animation-duration:'+sd+'s"><div class="bd"></div></div></div>';
   }
   box.innerHTML=h;
 }
@@ -380,7 +533,7 @@ function fireworks(){
   requestAnimationFrame(frame);
 }
 stars();lanterns();fireworks();setLang("th");
-if(location.protocol.indexOf("http")===0){pull();setInterval(pull,6000);}
+if(location.protocol.indexOf("http")===0){pull().then(admInit);setInterval(pull,6000);}
 })();
 </script>
 </body>
